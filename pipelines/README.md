@@ -62,6 +62,8 @@ The password is -> "u"
 
 ### Demonizing Tornado/luigi static visualiser and central scheduler
     docker exec -i <running-container-id/Name> luigid --background --logdir /var/log/luigi/
+    ## To access the web application
+    ## From your host browser navigate to "http://<your-container-ip>:8020"
 
 ### Running the main command (Languages Count)
     docker exec -i <running-container-id/Name> bash -c "cd /home/ubuntu/josa/pipelines && PYTHONPATH=. luigi --module josagit AggregateLanguages"
