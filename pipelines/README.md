@@ -1,21 +1,26 @@
 # JOSA Session
 
-This repo will help you get started with our session with both vagrant and docker  
+This repo will help you get started with our session using docker 1.7 +  
 
 ### Installation for Session 1
 
-You need to be running vagrant and virtualbox.
-Clone the repo to your computer
+On your linux machine
 
-  vagrant up
+Download Pentaho community edition using the following link
 
+http://community.pentaho.com/projects/data-integration/
+
+    ## navigate to your cloned repo and use the below command.
+    unzip pentaho-jobs.zip
+
+Open the exercise files
 
 ### Installation for Session 2
 
 You need to be running docker 1.7 +
 
 ```sh
-$ docker build .
+$ docker build -t josa-ds .
 ```
 You need to get the new image id that was created from the docker build.
 
@@ -44,7 +49,7 @@ Expected result
     CONTAINER ID        IMAGE                 COMMAND           ...                   PORTS
     9f544db853f3  <composed-image-id> "/bin/sh -c 'exec /s      ...    22/tcp, 3306/tcp, 8082/tcp      
 
-To SSH into the container (Not recommended - Only use to view post compute result logs)
+To SSH into the container (Not Recommended)
 
     docker inspect <container-id>
 
@@ -55,8 +60,11 @@ $ enter pass:
 The password is -> "u"
 ```
 
-### Demonizing Tornado/luigi static visualiser
-    docker exec -i <running-container-id> luigid --background --logdir /var/log/luigi/
+### Demonizing Tornado/luigi static visualiser and central scheduler
+    docker exec -i <running-container-id/Name> luigid --background --logdir /var/log/luigi/
 
-### Running the main command
-    docker exec -i <running-container-id> PYTHONPATH=. luigi --module josagit AggregateLanguages
+### Running the main command (Languages Count)
+    docker exec -i <running-container-id/Name> bash -c "cd /home/ubuntu/josa/pipelines && PYTHONPATH=. luigi --module josagit AggregateLanguages"
+
+### Viewing the output from docker (Languages count job)
+    docker exec -i <running-container-id/Name> less /home/ubuntu/josa/pipelines/cleaned-data/aggregated-languages.json
