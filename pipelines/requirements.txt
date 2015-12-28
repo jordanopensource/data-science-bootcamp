@@ -1,0 +1,15 @@
+argparse==1.2.1
+backports-abc==0.4
+backports.ssl-match-hostname==3.4.0.2
+certifi==2015.11.20.1
+decorator==4.0.6
+docutils==0.12
+jsonpath-rw==1.4.0
+lockfile==0.12.2
+luigi==2.0.1
+ply==3.8
+python-daemon==2.1.0
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.3
+wsgiref==0.1.2
