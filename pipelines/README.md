@@ -4,17 +4,21 @@ This repo will help you get started with our session using docker 1.7 +
 
 ### pre-sessions
 
-1. install git
+1. Install git
 
+	```sh
 	sudo apt-get install git
+	```
 
 ### session 1
-1. install java for pentaho
+1. Install java for Pentaho
 
+	```sh
 	sudo apt-get install default-jre openjdk-7-jre default-jdk openjdk-7-jdk
+	```
 
-2. install mongo
-
+2. Install mongo
+	```sh
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 	
 	echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
@@ -22,12 +26,15 @@ This repo will help you get started with our session using docker 1.7 +
 	sudo apt-get update
 	
 	sudo apt-get install -y mongodb-org
-	
-	- if you are facing some warnings (transparent_hugepage/defrag warning) do the following:
-	
-		a. Open /etc/init/mongod.conf file.
+	```
 
-		b. Add the lines below immediately after chown $DEAMONUSER /var/run/mongodb.pid and before end script.
+	* If you are facing some warnings (transparent_hugepage/defrag warning), do the following:
+	
+		* Open /etc/init/mongod.conf file.
+
+		* Add the lines below immediately after chown $DEAMONUSER /var/run/mongodb.pid and before end script.
+		
+		```sh
 		################################################################
 		if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
 		   echo never > /sys/kernel/mm/transparent_hugepage/enabled
@@ -36,26 +43,35 @@ This repo will help you get started with our session using docker 1.7 +
 		   echo never > /sys/kernel/mm/transparent_hugepage/defrag
 		fi
 		################################################################
-		c.Restart mongod (service mongod restart).
+		```
 
-3. install mysql
+		* Restart mongod (service mongod restart).
 
+3. Install MySQL
+
+	```sh
 	sudo apt-get install mysql-client mysql-server
+	```
 
-4. login and create "josa" database
+4. Login and create "josa" database
 
+	```sh
 	mysql -uroot -p
 
 	create database josa;
+	```
 
-5. download mysql JDBC connector and move it to $home/data-integration/lib
+5. Download mysql JDBC connector and move it to $home/data-integration/lib
 
+	```sh
 	http://dev.mysql.com/downloads/connector/j/
-
+	```
 
 6. Download Pentaho community edition using the following link
 
+	```sh
 	http://community.pentaho.com/projects/data-integration/
+	```
 
 7. Navigate to your cloned repo and open the exercise files under **Session1**.
 
