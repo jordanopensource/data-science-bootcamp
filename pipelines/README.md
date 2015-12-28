@@ -5,19 +5,28 @@ This repo will help you get started with our session using docker 1.7 +
 ### pre-sessions
 
 1. install git
+
 	sudo apt-get install git
 
 ### session 1
 1. install java for pentaho
+
 	sudo apt-get install default-jre openjdk-7-jre default-jdk openjdk-7-jdk
 
 2. install mongo
+
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+	
 	echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+	
 	sudo apt-get update
+	
 	sudo apt-get install -y mongodb-org
+	
 	- if you are facing some warnings (transparent_hugepage/defrag warning) do the following:
+	
 		a. Open /etc/init/mongod.conf file.
+
 		b. Add the lines below immediately after chown $DEAMONUSER /var/run/mongodb.pid and before end script.
 		################################################################
 		if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
@@ -30,13 +39,17 @@ This repo will help you get started with our session using docker 1.7 +
 		c.Restart mongod (service mongod restart).
 
 3. install mysql
+
 	sudo apt-get install mysql-client mysql-server
 
 4. login and create "josa" database
+
 	mysql -uroot -p
+
 	create database josa;
 
 5. download mysql JDBC connector and move it to $home/data-integration/lib
+
 	http://dev.mysql.com/downloads/connector/j/
 
 
