@@ -11,7 +11,7 @@ This repo will help you get started with our session using docker 1.7 +
 1. install java for pentaho
 	sudo apt-get install default-jre openjdk-7-jre default-jdk openjdk-7-jdk
 
-3. install mongo
+2. install mongo
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 	echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 	sudo apt-get update
@@ -29,24 +29,22 @@ This repo will help you get started with our session using docker 1.7 +
 		################################################################
 		c.Restart mongod (service mongod restart).
 
-4. install mysql
+3. install mysql
 	sudo apt-get install mysql-client mysql-server
 
-5. login and create "josa" database
+4. login and create "josa" database
 	mysql -uroot -p
 	create database josa;
 
-6. download mysql JDBC connector and move it to $home/data-integration/lib
+5. download mysql JDBC connector and move it to $home/data-integration/lib
 	http://dev.mysql.com/downloads/connector/j/
 
-On your linux machine
 
-Download Pentaho community edition using the following link
+6. Download Pentaho community edition using the following link
 
-http://community.pentaho.com/projects/data-integration/
+	http://community.pentaho.com/projects/data-integration/
 
-    ## navigate to your cloned repo and use the below command.
-    unzip pentaho-jobs.zip
+7. Navigate to your cloned repo and open the exercise files under **Session1**.
 
 Open the exercise files
 
