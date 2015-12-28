@@ -2,7 +2,7 @@
 
 This repo will help you get started with our session using docker 1.7 +  
 
-### pre-sessions
+### Pre-sessions
 
 1. Install git
 
@@ -10,7 +10,7 @@ This repo will help you get started with our session using docker 1.7 +
 	sudo apt-get install git
 	```
 
-### session 1
+### Installation for Session 1
 1. Install java for Pentaho
 
 	```sh
