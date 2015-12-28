@@ -71,7 +71,7 @@ Expected result
 
 Spin off a new container
 ```sh
-$ docker run -name josa-luigi -P <composed-image-id>
+$ docker run --name josa-luigi -P josa-luigi
 ```
 
 To ensure the container has started.
@@ -96,12 +96,12 @@ The password is -> "u"
 ```
 
 ### Demonizing Tornado/luigi static visualiser and central scheduler
-    docker exec -i <running-container-id/Name> luigid --background --logdir /var/log/luigi/
+    docker exec -i josa-luigi luigid --background --logdir /var/log/luigi/
     ## To access the web application
     ## From your host browser navigate to "http://<your-container-ip>:8020"
 
 ### Running the main command (Languages Count)
-    docker exec -i <running-container-id/Name> bash -c "cd /home/ubuntu/josa/pipelines && PYTHONPATH=. luigi --module josagit AggregateLanguages"
+    docker exec -i josa-luigi bash -c "cd /home/ubuntu/josa/pipelines && PYTHONPATH=. luigi --module josagit AggregateLanguages"
 
 ### Viewing the output from docker (Languages count job)
-    docker exec -i <running-container-id/Name> less /home/ubuntu/josa/pipelines/cleaned-data/aggregated-languages.json
+    docker exec -i josa-luigi less /home/ubuntu/josa/pipelines/cleaned-data/aggregated-languages.json
