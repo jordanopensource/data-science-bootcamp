@@ -2,7 +2,42 @@
 
 This repo will help you get started with our session using docker 1.7 +  
 
-### Installation for Session 1
+### pre-sessions
+
+1. install git
+	sudo apt-get install git
+
+### session 1
+1. install java for pentaho
+	sudo apt-get install default-jre openjdk-7-jre default-jdk openjdk-7-jdk
+
+3. install mongo
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+	echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+	- if you are facing some warnings (transparent_hugepage/defrag warning) do the following:
+		a. Open /etc/init/mongod.conf file.
+		b. Add the lines below immediately after chown $DEAMONUSER /var/run/mongodb.pid and before end script.
+		################################################################
+		if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+		   echo never > /sys/kernel/mm/transparent_hugepage/enabled
+		fi
+		if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+		   echo never > /sys/kernel/mm/transparent_hugepage/defrag
+		fi
+		################################################################
+		c.Restart mongod (service mongod restart).
+
+4. install mysql
+	sudo apt-get install mysql-client mysql-server
+
+5. login and create "josa" database
+	mysql -uroot -p
+	create database josa;
+
+6. download mysql JDBC connector and move it to $home/data-integration/lib
+	http://dev.mysql.com/downloads/connector/j/
 
 On your linux machine
 
@@ -20,7 +55,7 @@ Open the exercise files
 You need to be running docker 1.7 +
 
 ```sh
-$ docker build -t josa-ds .
+$ docker build -t josa-luigi .
 ```
 You need to get the new image id that was created from the docker build.
 
@@ -31,12 +66,12 @@ $ docker images
 Expected result
 
       REPOSITORY                 TAG                 IMAGE ID            CREATED           VIRTUAL SIZE
-    <composed-image-id>         <TAG>              ca1e8215c861        few seconds ago      473.4 MB
+      josa-luigi                <TAG>              ca1e8215c861        few seconds ago      473.4 MB
       <some-image>              <TAG>              fb9c051ae80a         13 hours ago        473.4 MB
 
 Spin off a new container
 ```sh
-$ docker run <composed-image-id>
+$ docker run -name josa-luigi -P <composed-image-id>
 ```
 
 To ensure the container has started.
@@ -47,13 +82,13 @@ $ docker ps
 Expected result
 
     CONTAINER ID        IMAGE                 COMMAND           ...                   PORTS
-    9f544db853f3  <composed-image-id> "/bin/sh -c 'exec /s      ...    22/tcp, 3306/tcp, 8082/tcp      
+    9f544db853f3      josa-luigi        "/bin/sh -c 'exec /s      ...    22/tcp, 3306/tcp, 8082/tcp      
 
 To SSH into the container (Not Recommended)
 
-    docker inspect <container-id>
+    docker inspect josa-luigi
 
-Notice the auto-assigned IP
+Notice the auto-assigned IP (If running on a virtual machine, please use your host IP)
 ```sh
 $ ssh ubuntu@<container-ip>
 $ enter pass:
