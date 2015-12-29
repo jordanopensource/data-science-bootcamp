@@ -4,13 +4,19 @@ This repo will help you get started with our session using docker 1.7 +
 
 ### Pre-sessions
 
-1. Install git
+   1. Install git
 
 	```sh
 	sudo apt-get install git
 	```
+   2. Clone this repository
+
+	```sh
+	git clone https://github.com/jordanopensource/data-science-bootcamp.git
+	```
 
 ### Installation for Session 1
+
 1. Install java for Pentaho
 
 	```sh
@@ -73,13 +79,22 @@ This repo will help you get started with our session using docker 1.7 +
 	http://community.pentaho.com/projects/data-integration/
 	```
 
-7. Navigate to your cloned repo and open the exercise files under **Session1**.
 
-Open the exercise files
+7. Unzip the Pentaho directory. To check your installation, navigate to the data-integration directory, and do the below command. If the installation is successful, a GUI will open. (For Windows users: you should only need to double click on the file)
+
+	```sh
+	sh spoon.sh
+	```
+8. For session 1, you will be using the exercise files under **Session1** in your cloned repository.
+
 
 ### Installation for Session 2
 
-You need to be running docker 1.7 +
+You need to be running docker 1.7 +. You can install it from https://docs.docker.com/linux/step_one/ or 	https://docs.docker.com/engine/installation/ubuntulinux/
+
+*Note for Windows users: You will need to run all the below docker steps in a Virtual Machine running Ubuntu*
+
+Proceed with the following steps: (If they don't work, you may need to write "sudo" before all the docker commands)
 
 ```sh
 $ docker build -t josa-luigi .
@@ -97,9 +112,19 @@ Expected result
       <some-image>              <TAG>              fb9c051ae80a         13 hours ago        473.4 MB
 
 Spin off a new container
-```sh
-$ docker run --name josa-luigi -P josa-luigi
-```
+
+  * For Linux users:
+
+	```sh
+	$ docker run --name josa-luigi josa-luigi
+	```
+
+  * For Mac users:
+
+	```sh
+	$ docker run --name josa-luigi -P josa-luigi
+	```
+
 
 To ensure the container has started.
 
