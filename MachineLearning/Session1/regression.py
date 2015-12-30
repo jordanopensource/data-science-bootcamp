@@ -8,6 +8,7 @@ cars = pandas.read_csv("AlWaseet.csv")
 #Take a look
 cars.describe()
 
+###LINEAR
 #Visualize
 import matplotlib.pyplot as plt
 plt.xlabel("Milage in KM")
@@ -77,3 +78,20 @@ plt.show()
 formula4 = 'PRICE ~ AGE + CHASSIS'
 model4 = stats.ols(formula4, data=cars).fit()
 model4.summary()
+
+###LOGISTIC
+lformula1 = 'CHASSIS ~ PRICE + MILEAGE + AGE'
+lmodel1 = stats.logit(lformula1, data=cars).fit()
+lmodel1.summary()
+#Interpret coefficients
+import math
+for (var, coef) in  lmodel1.params.iteritems():
+    if (var == "Intercept"):
+        continue
+    print var, math.exp(coef)
+#Try another model
+lformula2 = 'CHASSIS ~ AGE'
+lmodel2 = stats.logit(lformula2, data=cars).fit()
+lmodel2.summary()
+#Check prediction power
+(map(lambda x:round(x), lmodel1.predict()) == cars.CHASSIS) #OVERFITTING!
