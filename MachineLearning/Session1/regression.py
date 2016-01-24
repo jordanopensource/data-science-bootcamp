@@ -27,7 +27,7 @@ import statsmodels.formula.api as stats
 formula1 = 'PRICE ~ MILEAGE'
 model1 = stats.ols(formula1, data = cars).fit()
 model1.summary()
-
+#S INTERPRETATION
 #Remove outlier
 cars = cars[cars.PRICE < max(cars.PRICE)]
 model1v2 = stats.ols(formula1, data = cars).fit()
@@ -40,7 +40,7 @@ plt.xlim([0,200000])
 plt.scatter(cars['MILEAGE'], cars['PRICE'])
 plt.plot(cars['MILEAGE'], model1v2.predict(cars))
 plt.show()
-
+## BREAK
 #### More variables
 import datetime
 cars['AGE'] = datetime.date.today().year - cars['YEAR'] #Guess what, ignore the warning!
@@ -50,13 +50,14 @@ plt.xlabel("Age in Years")
 plt.ylabel("Price in JOD")
 plt.xlim([0,20])
 plt.scatter(cars['AGE'], cars['PRICE'])
+plt.show()
 
 cars['AGE'].corr(cars['PRICE'])
 
 formula2 = 'PRICE ~ MILEAGE + AGE'
 model2 = stats.ols(formula2, data = cars).fit()
 model2.summary()
-
+#S INTERPRETATION
 formula3 = 'PRICE ~ MILEAGE + AGE + CHASSIS_FR + CHASSIS_FL \
             + CHASSIS_RR + CHASSIS_RL'
 model3 = stats.ols(formula3, data = cars).fit()
@@ -95,3 +96,4 @@ lmodel2 = stats.logit(lformula2, data=cars).fit()
 lmodel2.summary()
 #Check prediction power
 (map(lambda x:round(x), lmodel1.predict()) == cars.CHASSIS) #OVERFITTING!
+#S A COMMENT ON PREDICTION
